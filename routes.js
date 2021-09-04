@@ -8,9 +8,10 @@ router.post('/new', async (req, res) => {
         const { name, description, amount } = req.body
         const _ = await pool.query(ADD_NEW, [name, description, amount]);
         const result = await pool.query(SELECT_ALL)
-        res.json({ res: result.rows })
+        const data = result.rows
+        res.json(data)
     } catch (err) {
-        console.log(err.message)
+        res.json(err.message)
     }
 })
 router.get('/:duration', async (req, res) => {
@@ -33,7 +34,7 @@ router.get('/:duration', async (req, res) => {
         res.json(data)
 
     } catch (err) {
-        console.log(err.message)
+        res.json(err.message)
     }
 })
 
