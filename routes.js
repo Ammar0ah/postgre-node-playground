@@ -5,8 +5,8 @@ const { DAILY_QUERY, WEEKLY_QUERY, MONTHLY_QUERY, ADD_NEW, SELECT_ALL } = requir
 
 router.post('/new', async (req, res) => {
     try {
-        const { username, description, amount } = req.body
-        const _ = await pool.query(ADD_NEW, [username, description, amount]);
+        const { username, description, amount,date } = req.body
+        const _ = await pool.query(ADD_NEW, [username, description, amount,date]);
         const result = await pool.query(SELECT_ALL)
         const data = result.rows
         res.json(data)
